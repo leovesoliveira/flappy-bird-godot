@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://cfufkcmh2few7"]
+
+[ext_resource type="Script" uid="uid://cbnreedb2dy1g" path="res://Scripts/background.gd" id="1_pojwb"]
+[ext_resource type="Texture2D" uid="uid://b7ag5jlk3jjjx" path="res://Assets/background.png" id="1_sn1xx"]
+
+[node name="Background" type="Parallax2D" unique_id=1728471234]
+repeat_size = Vector2(395, 0)
+autoscroll = Vector2(-4, 0)
+repeat_times = 3
+script = ExtResource("1_pojwb")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1873462439]
+texture = ExtResource("1_sn1xx")

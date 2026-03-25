@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://b85abq8dr7cms"]
+
+[ext_resource type="Script" uid="uid://0pe6ep407d4y" path="res://Scripts/pipes.gd" id="1_7ktcp"]
+[ext_resource type="Texture2D" uid="uid://bs84j6ikjrmwg" path="res://Assets/pipe.png" id="1_uhra5"]
+[ext_resource type="Script" uid="uid://bjvxbmgnfejjk" path="res://Scripts/up_pipe.gd" id="2_ws3sl"]
+[ext_resource type="Script" uid="uid://d15nwcagjyo5n" path="res://Scripts/down_pipe.gd" id="4_l3813"]
+[ext_resource type="Script" uid="uid://cnptbauhh1crn" path="res://Scripts/score.gd" id="4_qiwso"]
+[ext_resource type="AudioStream" uid="uid://crwuxyak6r6bc" path="res://Assets/hurt.wav" id="6_a55u2"]
+[ext_resource type="AudioStream" uid="uid://cvsvxqx8eg64a" path="res://Assets/fall.wav" id="7_ly76y"]
+[ext_resource type="AudioStream" uid="uid://doe2oj1nf4l8k" path="res://Assets/score.wav" id="8_m1m6v"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7ktcp"]
+size = Vector2(32, 140)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a55u2"]
+size = Vector2(11, 70)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ws3sl"]
+size = Vector2(32, 140)
+
+[node name="Pipes" type="Node2D" unique_id=2015500549]
+script = ExtResource("1_7ktcp")
+
+[node name="UpPipe" type="Area2D" parent="." unique_id=25369224 groups=["pipes"]]
+position = Vector2(0, -105)
+script = ExtResource("2_ws3sl")
+
+[node name="Sprite2D" type="Sprite2D" parent="UpPipe" unique_id=228390397]
+texture = ExtResource("1_uhra5")
+region_rect = Rect2(21, 0, 36, 22)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="UpPipe" unique_id=1221698753]
+shape = SubResource("RectangleShape2D_7ktcp")
+
+[node name="Score" type="Area2D" parent="." unique_id=1218457582]
+script = ExtResource("4_qiwso")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Score" unique_id=595065262]
+position = Vector2(10.5, 0)
+shape = SubResource("RectangleShape2D_a55u2")
+
+[node name="DownPipe" type="Area2D" parent="." unique_id=838823155 groups=["pipes"]]
+position = Vector2(0, 105)
+script = ExtResource("4_l3813")
+
+[node name="Sprite2D" type="Sprite2D" parent="DownPipe" unique_id=899577674]
+texture = ExtResource("1_uhra5")
+flip_v = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DownPipe" unique_id=229139957]
+shape = SubResource("RectangleShape2D_ws3sl")
+
+[node name="HurtSound" type="AudioStreamPlayer2D" parent="." unique_id=1105321899]
+unique_name_in_owner = true
+stream = ExtResource("6_a55u2")
+
+[node name="FallSound" type="AudioStreamPlayer2D" parent="." unique_id=1295067532]
+unique_name_in_owner = true
+stream = ExtResource("7_ly76y")
+
+[node name="ScoreSound" type="AudioStreamPlayer2D" parent="." unique_id=41588089]
+unique_name_in_owner = true
+stream = ExtResource("8_m1m6v")
+
+[connection signal="body_entered" from="UpPipe" to="UpPipe" method="_on_body_entered"]
+[connection signal="body_entered" from="Score" to="Score" method="_on_body_entered"]
+[connection signal="body_entered" from="DownPipe" to="DownPipe" method="_on_body_entered"]

@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://dqlewy2v7n032"]
+
+[ext_resource type="Script" uid="uid://bwve0rfly5wfh" path="res://Scripts/floor.gd" id="1_agfsv"]
+[ext_resource type="Texture2D" uid="uid://dn0ecu50d1xti" path="res://Assets/floor.png" id="1_nvnu3"]
+
+[node name="Floor" type="Parallax2D" unique_id=1927698857]
+repeat_size = Vector2(147, 0)
+autoscroll = Vector2(-70, 0)
+repeat_times = 7
+script = ExtResource("1_agfsv")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=395336063]
+z_index = 1
+texture = ExtResource("1_nvnu3")

@@ -1,0 +1,223 @@
+[gd_scene format=3 uid="uid://yik7r83u5ky0"]
+
+[ext_resource type="Script" uid="uid://cyjktluwom7bs" path="res://Scripts/game.gd" id="1_v158k"]
+[ext_resource type="PackedScene" uid="uid://cfufkcmh2few7" path="res://Scenes/background.tscn" id="2_i6g32"]
+[ext_resource type="PackedScene" uid="uid://dqlewy2v7n032" path="res://Scenes/floor.tscn" id="3_1l0tm"]
+[ext_resource type="PackedScene" uid="uid://bn66nkxr3q703" path="res://Scenes/killzone.tscn" id="4_v158k"]
+[ext_resource type="PackedScene" uid="uid://jisixux7idai" path="res://Scenes/bird.tscn" id="5_h4fw4"]
+[ext_resource type="Script" uid="uid://rjnuww3whxi2" path="res://Scripts/game_over_ui.gd" id="5_i6g32"]
+[ext_resource type="FontFile" uid="uid://can5dtvwo6crf" path="res://Assets/Jersey10-Regular.ttf" id="5_wowpa"]
+[ext_resource type="Script" uid="uid://ce02hagmmpgyc" path="res://Scripts/restart_button.gd" id="7_1l0tm"]
+[ext_resource type="Script" uid="uid://hweca6ilq1v" path="res://Scripts/score_ui.gd" id="9_h4fw4"]
+[ext_resource type="AudioStream" uid="uid://bngyy2l10c2g" path="res://Assets/transition.wav" id="10_ldgsr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jjvhh"]
+size = Vector2(176, 20)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wowpa"]
+bg_color = Color(0.6666667, 0.96862745, 0.4392157, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.4117647, 0.6784314, 0.20784314, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i6g32"]
+bg_color = Color(0.6666667, 0.96862745, 0.4392157, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.4117647, 0.6784314, 0.20784314, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1l0tm"]
+bg_color = Color(0.6666667, 0.96862745, 0.4392157, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.4117647, 0.6784314, 0.20784314, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+shadow_color = Color(0, 0, 0, 0.14117648)
+shadow_size = 1
+shadow_offset = Vector2(0.5, 0.5)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h4fw4"]
+bg_color = Color(0.85490197, 0.8509804, 0.58431375, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.8117647, 0.6627451, 0.3137255, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="Game" type="Node2D" unique_id=1120351623]
+script = ExtResource("1_v158k")
+
+[node name="Background" parent="." unique_id=1728471234 instance=ExtResource("2_i6g32")]
+scroll_offset = Vector2(-261, -16)
+
+[node name="Floor" parent="." unique_id=1927698857 instance=ExtResource("3_1l0tm")]
+scroll_offset = Vector2(0, 134)
+
+[node name="Killzone" parent="." unique_id=41759057 instance=ExtResource("4_v158k")]
+position = Vector2(0, 106)
+
+[node name="Ceiling" type="StaticBody2D" parent="." unique_id=415071603]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ceiling" unique_id=1706014198]
+position = Vector2(0, -174)
+shape = SubResource("RectangleShape2D_jjvhh")
+
+[node name="Bird" parent="." unique_id=1938526499 instance=ExtResource("5_h4fw4")]
+position = Vector2(-20, -20)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=2125507298]
+zoom = Vector2(5, 5)
+
+[node name="GameOverUI" type="Node2D" parent="." unique_id=980516687]
+z_index = 3
+script = ExtResource("5_i6g32")
+
+[node name="Label" type="Label" parent="GameOverUI" unique_id=794490556]
+offset_left = -46.0
+offset_top = -79.0
+offset_right = 46.0
+offset_bottom = -56.0
+theme_override_colors/font_color = Color(1, 0.9490196, 0.1882353, 1)
+theme_override_colors/font_outline_color = Color(0.56078434, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("5_wowpa")
+theme_override_font_sizes/font_size = 20
+text = "GAME OVER"
+horizontal_alignment = 1
+
+[node name="RestartButton" type="Button" parent="GameOverUI" unique_id=1892207667]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.090897
+offset_top = 41.0
+offset_right = 33.0
+offset_bottom = 59.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.4117647, 0.6784314, 0.20784314, 1)
+theme_override_colors/font_focus_color = Color(0.4117647, 0.6784314, 0.20784314, 1)
+theme_override_colors/font_pressed_color = Color(0.4117647, 0.6784314, 0.20784314, 1)
+theme_override_colors/font_hover_color = Color(0.4117647, 0.6784314, 0.20784314, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.4117647, 0.6784314, 0.20784314, 1)
+theme_override_fonts/font = ExtResource("5_wowpa")
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("StyleBoxFlat_wowpa")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_i6g32")
+theme_override_styles/hover = SubResource("StyleBoxFlat_1l0tm")
+text = "RESTART
+"
+script = ExtResource("7_1l0tm")
+
+[node name="Panel" type="Panel" parent="GameOverUI" unique_id=2106383593]
+offset_left = -50.0
+offset_top = -45.0
+offset_right = 50.0
+offset_bottom = 27.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_h4fw4")
+
+[node name="Score" type="Label" parent="GameOverUI" unique_id=722770577]
+offset_left = -49.0
+offset_top = -44.0
+offset_right = 49.0
+offset_bottom = -24.0
+theme_override_colors/font_color = Color(0.85490197, 0.8509804, 0.58431375, 1)
+theme_override_colors/font_outline_color = Color(0.8117647, 0.6627451, 0.3137255, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("5_wowpa")
+theme_override_font_sizes/font_size = 18
+text = "score"
+horizontal_alignment = 1
+
+[node name="ScoreNumber" type="Label" parent="GameOverUI" unique_id=1951887891]
+unique_name_in_owner = true
+offset_left = -49.0
+offset_top = -30.0
+offset_right = 49.0
+offset_bottom = -7.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("5_wowpa")
+theme_override_font_sizes/font_size = 20
+text = "000"
+horizontal_alignment = 1
+
+[node name="HighScore" type="Label" parent="GameOverUI" unique_id=592707523]
+offset_left = -49.0
+offset_top = -11.0
+offset_right = 49.0
+offset_bottom = 9.0
+theme_override_colors/font_color = Color(0.85490197, 0.8509804, 0.58431375, 1)
+theme_override_colors/font_outline_color = Color(0.8117647, 0.6627451, 0.3137255, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("5_wowpa")
+theme_override_font_sizes/font_size = 18
+text = "high score"
+horizontal_alignment = 1
+
+[node name="HighScoreNumber" type="Label" parent="GameOverUI" unique_id=1851121439]
+unique_name_in_owner = true
+offset_left = -49.0
+offset_top = 3.0
+offset_right = 49.0
+offset_bottom = 26.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("5_wowpa")
+theme_override_font_sizes/font_size = 20
+text = "000"
+horizontal_alignment = 1
+
+[node name="PipesSpawner" type="Timer" parent="." unique_id=2041800973]
+unique_name_in_owner = true
+wait_time = 2.0
+autostart = true
+
+[node name="ScoreUI" type="Node2D" parent="." unique_id=625001798]
+unique_name_in_owner = true
+z_index = 3
+script = ExtResource("9_h4fw4")
+
+[node name="Label" type="Label" parent="ScoreUI" unique_id=2084448101]
+unique_name_in_owner = true
+offset_left = -19.0
+offset_top = -114.0
+offset_right = 21.0
+offset_bottom = -87.0
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("5_wowpa")
+theme_override_font_sizes/font_size = 20
+text = "0"
+horizontal_alignment = 1
+
+[node name="TransitionSound" type="AudioStreamPlayer2D" parent="." unique_id=835287330]
+unique_name_in_owner = true
+stream = ExtResource("10_ldgsr")

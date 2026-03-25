@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://jisixux7idai"]
+
+[ext_resource type="Script" uid="uid://c3sarti4q57ta" path="res://Scripts/bird.gd" id="1_dnvpi"]
+[ext_resource type="Texture2D" uid="uid://ddpg06dj2ascf" path="res://Assets/spritesheet.png" id="1_i8bdw"]
+[ext_resource type="Script" uid="uid://ccu1tohl6blff" path="res://Components/input_component.gd" id="2_mcegt"]
+[ext_resource type="Script" uid="uid://bq20wghkrwwq0" path="res://Components/fly_component.gd" id="4_vl8r2"]
+[ext_resource type="Script" uid="uid://cs17t23p2sobi" path="res://Components/die_component.gd" id="5_rr33m"]
+[ext_resource type="Texture2D" uid="uid://tu1xqk24s51" path="res://Assets/tap-info.png" id="6_xf4a6"]
+[ext_resource type="AudioStream" uid="uid://d02jq2dj88f5h" path="res://Assets/fly.wav" id="7_pfwoh"]
+[ext_resource type="AudioStream" uid="uid://crwuxyak6r6bc" path="res://Assets/hurt.wav" id="8_om1ab"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mcegt"]
+radius = 6.0
+
+[node name="Bird" type="CharacterBody2D" unique_id=1938526499 groups=["player"]]
+z_index = 2
+script = ExtResource("1_dnvpi")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=402843080]
+texture = ExtResource("1_i8bdw")
+region_enabled = true
+region_rect = Rect2(0, 0, 21, 15)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1235018072]
+shape = SubResource("CircleShape2D_mcegt")
+
+[node name="InputComponent" type="Node" parent="." unique_id=818906584]
+unique_name_in_owner = true
+script = ExtResource("2_mcegt")
+metadata/_custom_type_script = "uid://ccu1tohl6blff"
+
+[node name="FlyComponent" type="Node" parent="." unique_id=2022546129 node_paths=PackedStringArray("body", "model")]
+unique_name_in_owner = true
+script = ExtResource("4_vl8r2")
+body = NodePath("..")
+model = NodePath("../Sprite2D")
+metadata/_custom_type_script = "uid://bq20wghkrwwq0"
+
+[node name="DieComponent" type="Node" parent="." unique_id=1166930610 node_paths=PackedStringArray("body")]
+unique_name_in_owner = true
+script = ExtResource("5_rr33m")
+body = NodePath("..")
+metadata/_custom_type_script = "uid://cs17t23p2sobi"
+
+[node name="TapInfo" type="Sprite2D" parent="." unique_id=387597582]
+unique_name_in_owner = true
+position = Vector2(32, 28)
+texture = ExtResource("6_xf4a6")
+
+[node name="FlySound" type="AudioStreamPlayer2D" parent="." unique_id=2000298629]
+unique_name_in_owner = true
+stream = ExtResource("7_pfwoh")
+
+[node name="HurtSound" type="AudioStreamPlayer2D" parent="." unique_id=1948471951]
+unique_name_in_owner = true
+stream = ExtResource("8_om1ab")
